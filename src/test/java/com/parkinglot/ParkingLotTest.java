@@ -82,6 +82,18 @@ public class ParkingLotTest {
 
     }
 
+    @Test
+    void should_return_nothing_when_fetch_given_parking_lot_and_full_slot() {
+        // Given
+        Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        //When
+        ParkingTicket parkingTicket = parkingLot.park(car);
+
+        //Then
+        assertNull(parkingTicket);
+    }
+
 
 
 }
