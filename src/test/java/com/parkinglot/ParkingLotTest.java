@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
+
     @Test
     void should_return_ticket_when_park_given_parking_lot_and_car() {
         // Given
@@ -88,10 +89,15 @@ public class ParkingLotTest {
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
         //When
-        ParkingTicket parkingTicket = parkingLot.park(car);
+        for(int i = 0; i <=11;i++) {
+            ParkingTicket parkingTicket = parkingLot.park(car);
+            if (i  > 10) {
+                assertNull(parkingTicket);
+            } else {
+                assertNotNull(parkingTicket);
+            }
+        }
 
-        //Then
-        assertNull(parkingTicket);
     }
 
 
