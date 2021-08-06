@@ -9,9 +9,12 @@ public class ParkingLot {
 
     public ParkingTicket park(Car cars) {
         ParkingTicket parkingTicket = new ParkingTicket();
-        parkedPositon.put(parkingTicket , cars);
+        if(parkedPositon.size()<=10) {
+            parkedPositon.put(parkingTicket, cars);
+            return parkingTicket;
+        }
+        return null;
 
-        return parkingTicket;
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
@@ -19,4 +22,6 @@ public class ParkingLot {
         parkedPositon.remove(parkingTicket);
         return carValue;
     }
+
+
 }
