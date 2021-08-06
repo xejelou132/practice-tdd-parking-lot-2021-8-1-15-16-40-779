@@ -10,7 +10,7 @@ public class ParkingLotTest {
     void should_return_ticket_when_park_given_parking_lot_and_car() {
         // Given
         Car car = new Car();
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(1);
         //When
         ParkingTicket parkingTicket = parkingLot.park(car);
         //Then
@@ -22,7 +22,7 @@ public class ParkingLotTest {
     void should_return_car_when_fetch_given_parking_lot_and_ticket() {
         // Given
         Car car = new Car();
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(1);
         ParkingTicket parkingTicket = new ParkingTicket();
         parkingTicket = parkingLot.park(car);
         //When
@@ -37,7 +37,7 @@ public class ParkingLotTest {
         // Given
         Car carBob = new Car();
         Car carAlice = new Car();
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(1);
 
         //When
         ParkingTicket bobParking = parkingLot.park(carBob);
@@ -54,7 +54,7 @@ public class ParkingLotTest {
     void should_return_nothing_when_fetch_given_parking_lot_and_wrong_ticket() {
         // Given
         Car car = new Car();
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(1);
         ParkingTicket newTix = new ParkingTicket();
 
         //When
@@ -71,7 +71,7 @@ public class ParkingLotTest {
     void should_return_nothing_when_fetch_given_parking_lot_and_used_ticket() {
         // Given
         Car car = new Car();
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(1);
         ParkingTicket bobParking = parkingLot.park(car);
 
         //When
@@ -87,19 +87,11 @@ public class ParkingLotTest {
     void should_return_nothing_when_fetch_given_parking_lot_and_full_slot() {
         // Given
         Car car = new Car();
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(11);
         //When
-        for(int i = 0; i <=11;i++) {
-            ParkingTicket parkingTicket = parkingLot.park(car);
-            if (i  > 10) {
-                assertNull(parkingTicket);
-            } else {
-                assertNotNull(parkingTicket);
-            }
-        }
+        ParkingTicket parkingTicket = parkingLot.park(car);
+        //Then
+        assertNull(parkingTicket);
 
     }
-
-
-
 }
