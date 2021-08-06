@@ -18,20 +18,16 @@ public class ParkingLotTest {
 
     }
 
-//    Given a parking lot, a ticket
-//    When fetch the car
-//    Then return a car
     @Test
     void should_return_car_when_fetch_given_parking_lot_and_ticket(){
         // Given
         Car car = new Car();
         ParkingLot  parkingLot = new ParkingLot();
         ParkingTicket parkingTicket = new ParkingTicket();
+        parkingTicket = parkingLot.park(car);
         //When
         Car actualCar = parkingLot.fetch(parkingTicket);
         //Then
         assertEquals(car , actualCar);
-
     }
-
 }
