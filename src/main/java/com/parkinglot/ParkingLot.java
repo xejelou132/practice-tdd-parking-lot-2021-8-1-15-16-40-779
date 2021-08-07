@@ -38,14 +38,12 @@ public class ParkingLot {
         return capacity;
     }
 
-    public int getMapSize() {
-        return parkCount.size();
-    }
-
     public int getEmptySpace() {
         return capacity - parkCount.size();
     }
-    Map<ParkingTicket, Car> getTicketAndCarMap() {
-        return parkCount;
+
+    public double getRate() {
+        double numberOfEmptySpace = getEmptySpace();
+        return (numberOfEmptySpace / capacity) * 100;
     }
 }
