@@ -26,7 +26,7 @@ public class ParkingBoy {
 
     public ParkingLot findParkingLot() {
         for (ParkingLot parkingLot : parkingLotList) {
-            if (parkingLot.getTicketAndCarMap().size() != parkingLot.getCapacity()) {
+            if (parkingLot.getCapacity() < 10) {
                 return parkingLot;
             }
         }
