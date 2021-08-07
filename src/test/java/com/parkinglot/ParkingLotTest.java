@@ -10,7 +10,7 @@ public class ParkingLotTest {
     void should_return_ticket_when_park_given_parking_lot_and_car() {
         // Given
         Car car = new Car();
-        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingLot parkingLot = new ParkingLot();
         //When
         ParkingTicket parkingTicket = parkingLot.park(car);
         //Then
@@ -22,7 +22,7 @@ public class ParkingLotTest {
     void should_return_car_when_fetch_given_parking_lot_and_ticket() {
         // Given
         Car car = new Car();
-        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingLot parkingLot = new ParkingLot();
         ParkingTicket parkingTicket = new ParkingTicket();
         parkingTicket = parkingLot.park(car);
         //When
@@ -37,7 +37,7 @@ public class ParkingLotTest {
         // Given
         Car carBob = new Car();
         Car carAlice = new Car();
-        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingLot parkingLot = new ParkingLot();
 
         //When
         ParkingTicket bobParking = parkingLot.park(carBob);
@@ -54,7 +54,7 @@ public class ParkingLotTest {
     void should_return_nothing_when_fetch_given_parking_lot_and_wrong_ticket() {
         // Given
         Car car = new Car();
-        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingLot parkingLot = new ParkingLot();
         ParkingTicket newTix = new ParkingTicket();
 
         //When
@@ -71,7 +71,7 @@ public class ParkingLotTest {
     void should_return_nothing_when_fetch_given_parking_lot_and_used_ticket() {
         // Given
         Car car = new Car();
-        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingLot parkingLot = new ParkingLot();
         ParkingTicket bobParking = parkingLot.park(car);
 
         //When
@@ -87,11 +87,17 @@ public class ParkingLotTest {
     void should_return_nothing_when_fetch_given_parking_lot_and_full_slot() {
         // Given
         Car car = new Car();
-        ParkingLot parkingLot = new ParkingLot(11);
-        //When
-        ParkingTicket parkingTicket = parkingLot.park(car);
+
+        ParkingLot parkingLot = new ParkingLot();
+        //when
+        for (int i = 0; i <10; i ++) {
+            ParkingTicket parkingTicket = parkingLot.park(car);
+        }
+        Car bobCar = new Car();
+
+        ParkingTicket newTickets = parkingLot.park(bobCar);
         //Then
-        assertNull(parkingTicket);
+        assertNull(newTickets);
 
     }
 }
