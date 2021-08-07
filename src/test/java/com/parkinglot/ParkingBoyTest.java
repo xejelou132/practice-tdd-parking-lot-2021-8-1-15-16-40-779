@@ -3,24 +3,30 @@ package com.parkinglot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingBoyTest {
     private Car car;
-    private ParkingLot parkingLot;
+    private List<ParkingLot> parkingLotList;
     private ParkingBoy parkingBoy;
+
 
     @BeforeEach
     void setUp() {
         car = new Car();
-        parkingLot = new ParkingLot();
-        parkingBoy = new ParkingBoy(parkingLot);
+        parkingLotList = new ArrayList<>();
+        parkingBoy = new ParkingBoy(parkingLotList);
     }
 
     @Test
     void should_return_ticket_when_park_given_parking_lot_and_car() {
+
         // Given
         Car car = new Car();
+        parkingLotList.add(new ParkingLot());
         //When
         ParkingTicket parkingTicket = parkingBoy.park(car);
         //Then
@@ -31,6 +37,7 @@ public class ParkingBoyTest {
     @Test
     void should_return_car_when_fetch_given_parking_lot_and_ticket() {
         // Given
+        parkingLotList.add(new ParkingLot());
         ParkingTicket parkingTicket = parkingBoy.park(car);
         //When
         Car actualCar = parkingBoy.fetch(parkingTicket);
@@ -42,6 +49,7 @@ public class ParkingBoyTest {
     @Test
     void should_return_right_car_when_fetch_given_parking_lot_and_right_ticket() {
         // Given
+        parkingLotList.add(new ParkingLot());
         Car carBob = new Car();
         Car carAlice = new Car();
 
@@ -59,6 +67,7 @@ public class ParkingBoyTest {
     @Test
     void should_return_nothing_when_fetch_given_parking_lot_and_wrong_ticket() {
         // Given
+        parkingLotList.add(new ParkingLot());
         ParkingTicket parkingTicket = parkingBoy.park(car);
         //when
         ParkingTicket wrongParkingTicket = new ParkingTicket();
@@ -72,6 +81,7 @@ public class ParkingBoyTest {
 
     @Test
     void should_return_nothing_when_fetch_given_parking_lot_and_used_ticket() {
+        parkingLotList.add(new ParkingLot());
         // Given
         ParkingTicket bobParking = parkingBoy.park(car);
         //When
@@ -86,6 +96,7 @@ public class ParkingBoyTest {
 
     @Test
     void should_return_nothing_when_fetch_given_parking_lot_and_full_slot() {
+        parkingLotList.add(new ParkingLot());
         // Given
         ParkingLot parkingLot = new ParkingLot();
         //when

@@ -3,21 +3,38 @@ package com.parkinglot;
 import java.util.List;
 
 public class ParkingBoy {
-    ParkingLot parkingLot;
-    Car fetchVehicle = new Car();
 
-    public ParkingBoy(ParkingLot parkingLotList) {
-        this.parkingLot = parkingLotList;
+    protected List<ParkingLot> parkingLotList;
+
+    public ParkingBoy(List<ParkingLot> parkingLotList) {
+        this.parkingLotList = parkingLotList;
     }
 
-    public ParkingTicket park(Car vehicle) {
-        return parkingLot.park(vehicle);
+    public ParkingTicket park(Car Car) {
+        ParkingLot parkingLot = findParkingLot();
+        return parkingLot.park(Car);
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
-        fetchVehicle = parkingLot.fetch(parkingTicket);
-        return fetchVehicle;
+        Car fetchCar = new Car();
+        for (ParkingLot parkingLot : parkingLotList) {
+            fetchCar = parkingLot.fetch(parkingTicket);
+        }
+        return fetchCar;
 
+    }
+
+    public ParkingLot findParkingLot() {
+        for (ParkingLot parkingLot : parkingLotList) {
+            if (parkingLot.getTicketAndCarMap().size() != parkingLot.getCapacity()) {
+                return parkingLot;
+            }
+        }
+        throw new ParkingException("Not Enough Position");
+    }
+
+    public void setParkingLot(List<ParkingLot> listParkingLots) {
+        this.parkingLotList = listParkingLots;
     }
 
 }
