@@ -55,15 +55,14 @@ public class ParkingLotTest {
         // Given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingTicket newTix = new ParkingTicket();
-
-        //When
-        ParkingTicket bobParking = parkingLot.park(car);
-
-        Car bobCar = parkingLot.fetch(newTix);
-
+        ParkingTicket parkingTicket = parkingLot.park(car);
+        //when
+        ParkingTicket wrongParkingTicket = new ParkingTicket();
         //Then
-        assertNull(bobCar);
+        Throwable runtimeException = assertThrows(RuntimeException.class
+                , () -> parkingLot.fetch(wrongParkingTicket));
+        assertEquals("Unrecognized Parking Ticket " + wrongParkingTicket.hashCode()
+                , runtimeException.getMessage());
 
     }
 
@@ -73,14 +72,14 @@ public class ParkingLotTest {
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
         ParkingTicket bobParking = parkingLot.park(car);
-
         //When
-        Car bobCar = parkingLot.fetch(bobParking);
-        Car aliceCar = parkingLot.fetch(bobParking);
-
+        ParkingTicket usedTicket = new ParkingTicket();
         //Then
-        assertNull(aliceCar);
 
+        Throwable runtimeException = assertThrows(RuntimeException.class
+                , () -> parkingLot.fetch(usedTicket));
+        assertEquals("Unrecognized Parking Ticket " + usedTicket.hashCode()
+                , runtimeException.getMessage());
     }
 
     @Test
@@ -90,14 +89,10 @@ public class ParkingLotTest {
 
         ParkingLot parkingLot = new ParkingLot();
         //when
-        for (int i = 0; i <10; i ++) {
+        for (int i = 1; i <=10; i ++) {
             ParkingTicket parkingTicket = parkingLot.park(car);
+            //Then
+            assertNotNull(parkingTicket);
         }
-        Car bobCar = new Car();
-
-        ParkingTicket newTickets = parkingLot.park(bobCar);
-        //Then
-        assertNull(newTickets);
-
     }
 }
