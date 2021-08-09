@@ -2,7 +2,7 @@ package com.parkinglot;
 
 import java.util.List;
 
-public class ParkingBoy {
+ public abstract class ParkingBoy {
 
     protected List<ParkingLot> parkingLotList;
 
@@ -25,16 +25,15 @@ public class ParkingBoy {
     }
 
     public ParkingLot findParkingLot() {
-        for (ParkingLot parkingLot : parkingLotList) {
-            if (parkingLot.getCapacity() < 10) {
-                return parkingLot;
-            }
-        }
-        throw new ParkingException("Not Enough Position");
+        return parkingLotList.stream()
+                .filter(parkingLot -> parkingLot.getCapacity() < 10)
+                .findFirst()
+                .orElseThrow(() -> new ParkingException("Not Enough Position"));
     }
 
     public void setParkingLot(List<ParkingLot> listParkingLots) {
         this.parkingLotList = listParkingLots;
+
     }
 
 }

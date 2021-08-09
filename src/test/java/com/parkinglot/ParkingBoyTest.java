@@ -12,14 +12,15 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ParkingBoyTest {
     private Car car;
     private List<ParkingLot> parkingLotList;
-    private ParkingBoy parkingBoy;
+
+   private ParkingBoy parkingBoy;
 
 
     @BeforeEach
     void setUp() {
         car = new Car();
         parkingLotList = new ArrayList<>();
-        parkingBoy = new ParkingBoy(parkingLotList);
+        parkingBoy  = new ParkingBoy(parkingLotList) {};
     }
 
     @Test
@@ -131,6 +132,7 @@ public class ParkingBoyTest {
         ParkingTicket parkingTix2 = parkingBoy.park(carAlice);
         //then
         assertNotNull(parkingTix2);
+
     }
 
     @Test

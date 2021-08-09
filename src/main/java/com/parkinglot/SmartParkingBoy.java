@@ -12,7 +12,7 @@ public class SmartParkingBoy extends ParkingBoy{
     @Override
     public ParkingLot findParkingLot() {
         return  parkingLotList.stream()
-                .min(Comparator.comparing(ParkingLot::getCapacity))
+                .min(Comparator.comparing(ParkingLot::getEmptySpace))
                 .orElseThrow(() -> new ParkingException("Not Enough Position"));
     }
 }
